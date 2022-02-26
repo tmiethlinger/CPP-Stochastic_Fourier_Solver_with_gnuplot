@@ -3,9 +3,11 @@
 This is the repo for the implementation of my Capstone project in the Udacity C++ Nanodegree Program.
 
 Mathematically speaking, in this program we want to solve
+
 <img src="https://render.githubusercontent.com/render/math?math=f''(x) = g(x)">
 
 for f(x), where
+
 <img src="https://render.githubusercontent.com/render/math?math=g(x)=\frac{d^2}{dx^2} a e^{-k(x-x_0)^2} = a(-2 e^{-k(x-x_0)^2}k %2B+ 4e^{-k(x-x_0)^2}k^2(x-x_0)^2)">.
 
 Without shift (for now, for simplicity we impose zero shift, i.e. we set x_0=0 in the program), this function is even and can thus be expressed as a Fourier-(cos)series:
