@@ -25,7 +25,7 @@ where the c_k's are different (but related to a_k) coefficients, n is the total 
 <img src="https://render.githubusercontent.com/render/math?math=f''(x) = \sum_{k=0}^{n-1}{c_k (-k^2) \cos(k x)} = \sum_{k=0}^{n-1}{a_k \cos(k x)} \approx \sum_{k=0}^{\infty}{a_k \cos(k x)}">.
 
 
-Of course, for this example we can numerically obtain the coefficients in O(n log(n)) using FFT libraries (such as [FFTW][fftw]) (or possibly even purely analytical), but to have some fun and get a smooth animation, we use a stochastic solver with adaptive learning rate lr to incrementally find our solution.
+Of course, in principle we could numerically obtain the coefficients and solve this example in O(n log(n)) by using FFT libraries (such as [FFTW][fftw]) (or possibly even purely analytical), but to have some fun and get a smooth animation, we use a stochastic solver with adaptive learning rate lr to incrementally find our solution.
 In other words, we train our coefficients (using bold for vector notation) using the following update rule:
 
 <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}\leftarrow\mathbf{c}%2B+\text{step(lr)}">,
@@ -38,7 +38,7 @@ would decrease with the new coefficients.
 
 Within the code, this training process is done using a `D2Fourier` object which derives from the abstract base class `Function` (same for `Fourier`, `Gauss` and `D2Gauss`). The L2 distance functional is implemented by creating a `std::function<double(double)>`object from the function arguments via lambda function syntax. This object then is passed to the function `simpson` which implements the composite Simpson`s rule integrator.
 
-Lastly, we update the solving process using `gnuplot`, which runs in a second `std::thread` using member function syntax. Since the `GnuplotFunctionViewer` class also overloads the `operator()`, we could have also passed the viewer instance itself to the thread constructor. To avoid data leaks in inter-thread communication, we use modern memory management techniques (in particular, `std::shared_ptr<T>` objects).
+Lastly, we display the solving process using `gnuplot`, which runs in a second `std::thread` using member function syntax. Since the `GnuplotFunctionViewer` class also overloads the `operator()`, we could have also passed the viewer instance itself to the thread constructor. To avoid data leaks in inter-thread communication, we use modern memory management techniques (in particular, `std::shared_ptr<T>` objects).
 
 Due to nested namespaces this project requires C++17 (hence, gcc/g++ >= 6.0).
 
