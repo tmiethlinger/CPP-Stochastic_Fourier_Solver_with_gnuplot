@@ -3,6 +3,8 @@
 
 This is the repo for the implementation of my Capstone project in the Udacity C++ Nanodegree Program.
 
+## Overview
+
 Mathematically speaking, in this program we want to solve
 
 <img src="https://render.githubusercontent.com/render/math?math=f''(x) = g(x)">
