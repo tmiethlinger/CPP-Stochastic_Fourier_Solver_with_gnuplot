@@ -11,9 +11,9 @@ Mathematically speaking, in this program we want to solve
 
 for f(x), where
 
-<img src="https://render.githubusercontent.com/render/math?math=g(x)=\frac{d^2}{dx^2} a e^{-k(x-x_0)^2} = a(-2 e^{-k(x-x_0)^2}k %2B+ 4e^{-k(x-x_0)^2}k^2(x-x_0)^2)">.
+<img src="https://render.githubusercontent.com/render/math?math=g(x)=\frac{d^2}{dx^2} a e^{-k(x-x_0)^2} = a(-2 e^{-k(x-x_0)^2}k %2B+ 4e^{-k(x-x_0)^2}k^2(x-x_0)^2)">,
 
-Without shift (for now, for simplicity we impose zero shift, i.e. we set x_0=0 in the program), this function is even and can thus be expressed as a Fourier-(cos)series:
+i.e., the second derivative of a Gaussian function. Without shift (for now, for simplicity we impose zero shift, i.e. we set x_0=0 in the program), this function is even and can thus be expressed as a Fourier-(cos)series:
 
 <img src="https://render.githubusercontent.com/render/math?math=g(x) = \sum_{k=0}^{\infty}{a_k \cos(k x)}">,
 
