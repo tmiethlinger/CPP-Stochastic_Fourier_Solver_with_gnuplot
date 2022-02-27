@@ -22,7 +22,7 @@ Thus, it is straightforward to use a truncated sum as our ansatz function for f(
 
 <img src="https://render.githubusercontent.com/render/math?math=f(x) := \sum_{k=0}^{n-1}{c_k \cos(k x)}">,
 
-where the c_k's are different (but related to a_k) coefficients, n is the total number of Fourier components used. Then, we can readily obtain the second derivate, f''(x):
+where the c_k's are different (but related to a_k) coefficients and n is the total number of Fourier components used. Then, we can readily obtain the second derivate, f''(x):
 
 <img src="https://render.githubusercontent.com/render/math?math=f''(x) = \sum_{k=0}^{n-1}{c_k (-k^2) \cos(k x)} = \sum_{k=0}^{n-1}{a_k \cos(k x)} \approx \sum_{k=0}^{\infty}{a_k \cos(k x)}">.
 
