@@ -38,7 +38,7 @@ which occurs if and only if the L2 distance
 
 would decrease with the new coefficients.
 
-Within the code, this training process is done using a `D2Fourier` object which derives from the abstract base class `Function` (same for `Fourier`, `Gauss` and `D2Gauss`). The L2 distance functional is implemented by creating a `std::function<double(double)>`object from the function arguments via lambda function syntax. This object then is passed to the function `simpson` which implements the composite Simpson`s rule integrator.
+Within the code, this training process is done using a `D2Fourier` object which derives from the abstract base class `Function` (same for `Fourier`, `Gauss` and `D2Gauss`). The L2 distance functional is implemented by creating a `std::function<double(double)>` object from the function arguments via lambda function syntax. This object then is passed to the function `Mathutil::simpson` which implements the composite Simpson`s rule integrator.
 
 Lastly, we display the solving process using `gnuplot`, which runs in a second `std::thread` using member function syntax. Since the `GnuplotFunctionViewer` class also overloads the `operator()`, we could have also passed the viewer instance itself to the thread constructor. To avoid data leaks in inter-thread communication, we use modern memory management techniques (in particular, `std::shared_ptr<T>` objects).
 
