@@ -75,39 +75,3 @@ Due to nested namespaces this project requires C++17 (hence, gcc/g++ >= 6.0).
 [fftw]: <https://www.fftw.org>
 [gnuplotbin]: <http://tmacchant33.starfree.jp/gnuplot_bin.html>
 [gnuplotwin]: <http://tmacchant33.starfree.jp/gnuplot_bin.html>
-
-## Rubric Points
-The project fulfills (at least) the following rubric points (min. requirements: 5).
- 1. The project demonstrates an understanding of C++ functions and control structures.
-    * Control structures:
-      * `if-else` statements (StochasticSolver.cpp:41)
-      * `for-loops` (StochasticSolver.cpp:34)
-      * `for-each` loops (main.cpp:83)
-      * `while` loops (GnuplotFunctionViewer:52)
-    * STL functions, different examples: 
-      * `std::function` (MathUtil.hpp:121)
-      * `std::inner_product` (StochasticSolver:67)
-      * `std::max` (MathUtil.hpp:134)
-      * `std::max_element` (MathUtil.hpp:146)
-      * `std::transform` (StochasticSolver:74)
- 2. The project uses Object Oriented Programming techniques.
-    * Altogether, 7 classes are implemented:
-      * `D2Fourier` (D2Fourier.hpp:19)
-      * `D2Gauss` (D2Gauss.hpp:17)
-      * `Fourier` (Fourier.hpp:19)
-      * `Function` (abstract class) (Function.hpp:10)
-      * `Gauss` (Gauss.hpp:15)
-      * `GnuplotFunctionViewer` (GnuplotFunctionViewer:13)
-      * `StochasticSolver` (StochasticSolver.hpp:20)
-    * Organized into class attributes (e.g., Gauss.hpp:49) and class methods (e.g., Gauss.hpp:40).
- 3. Classes follow an appropriate inheritance hierarchy.
-    * Base class `Function` (Function:10).
-    * Other classes representing functions (e.g., `Fourier`) inherit from `Function` (Fourier.hpp:19).
- 4. Derived class functions override virtual base class functions.
-    * Pure virtual function `Function::operator()`: `virtual  double  operator() (double  x) const = 0;` (Function:18) makes `Function` an abstract class.
-    * Override virtual base class member function: `double  operator() (double  x) const  override;` (Fourier.hpp:33).
- 5. The project uses smart pointers instead of raw pointers.
-    * In this project, we use several times `std::shared_ptr<Function>`.
-      * For example, `std::vector<std::shared_ptr<Function>> _vec_s_ptr` (GnuplotFunctionViewer:37) is a vector of shared pointers of (derived) `Function` objects (which we'll use to plot the functions).
- 6. The project uses multithreading.
-    * A second `std::thread` is created to plot the functions / interact with gnuplot (main:61).
