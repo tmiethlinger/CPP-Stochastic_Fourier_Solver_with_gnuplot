@@ -1,5 +1,5 @@
 
-# C++ND Capstone: Stochastic Fourier Solver with gnuplot
+# C++: Stochastic Fourier Solver with gnuplot
 
 This is the repo for the implementation of my Capstone project in the Udacity C++ Nanodegree Program.
 
