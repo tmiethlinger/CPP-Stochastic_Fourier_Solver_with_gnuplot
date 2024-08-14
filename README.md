@@ -5,36 +5,49 @@ This is the repo for the implementation of my Capstone project in the Udacity C+
 
 ## Overview
 
-Mathematically speaking, in this program we want to solve
+Mathematically speaking, in this program we want to solve the differential equation:
 
-<img src="https://render.githubusercontent.com/render/math?math=f''(x) = g(x)">
+$$
+f''(x) = g(x)
+$$
 
 for f(x), where
 
-<img src="https://render.githubusercontent.com/render/math?math=g(x)=\frac{d^2}{dx^2} a e^{-k(x-x_0)^2} = a(-2 e^{-k(x-x_0)^2}k %2B+ 4e^{-k(x-x_0)^2}k^2(x-x_0)^2)">,
+$$
+g(x)=\frac{d^2}{dx^2} a e^{-k(x-x_0)^2} = a(-2 e^{-k(x-x_0)^2}k + 4e^{-k(x-x_0)^2}k^2(x-x_0)^2)
+$$
 
-i.e., the second derivative of a Gaussian function. Without shift (for now, for simplicity we impose zero shift, i.e. we set x_0=0 in the program), this function is even and can thus be expressed as a Fourier-(cos)series:
+i.e., the second derivative of a Gaussian function. Without shift (for now, for simplicity we impose zero shift, i.e. we set $x_0=0$ in the program), this function is even and can thus be expressed as a Fourier-(cos)series:
 
-<img src="https://render.githubusercontent.com/render/math?math=g(x) = \sum_{k=0}^{\infty}{a_k \cos(k x)}">,
+$$
+g(x) = \sum_{k=0}^{\infty}{a_k \cos(k x)}
+$$
 
-where the a_k's are the coefficients of the series.
+where the $a_k$'s are the coefficients of the series.
 Thus, it is straightforward to use a truncated sum as our ansatz function for f(x):
 
-<img src="https://render.githubusercontent.com/render/math?math=f(x) := \sum_{k=0}^{n-1}{c_k \cos(k x)}">,
+$$
+f(x) := \sum_{k=0}^{n-1}{c_k \cos(k x)}
+$$
 
-where the c_k's are different (but related to a_k) coefficients and n is the total number of Fourier components used. Then, we can readily obtain the second derivate, f''(x):
+where the $c_k$'s are different (but related to $a_k$) coefficients and $n$ is the total number of Fourier components used. Then, we can readily obtain the second derivate, f''(x):
 
-<img src="https://render.githubusercontent.com/render/math?math=f''(x) = \sum_{k=0}^{n-1}{c_k (-k^2) \cos(k x)} = \sum_{k=0}^{n-1}{a_k \cos(k x)} \approx \sum_{k=0}^{\infty}{a_k \cos(k x)}">.
-
+$$
+f''(x) = \sum_{k=0}^{n-1}{c_k (-k^2) \cos(k x)} = \sum_{k=0}^{n-1}{a_k \cos(k x)} \approx \sum_{k=0}^{\infty}{a_k \cos(k x)}
+$$
 
 Of course, in principle we could numerically obtain the coefficients and solve this example in O(n log(n)) by using FFT libraries (such as [FFTW][fftw]) (or possibly even purely analytical), but to have some fun and get a smooth animation, we use a stochastic solver with adaptive learning rate lr to incrementally find our solution.
-In other words, we train our coefficients (using bold for vector notation) using the following update rule:
+In other words, we train our coefficients $c$ (here, $c$ is the vector of all coefficients) using the following update rule:
 
-<img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}\leftarrow\mathbf{c}%2B+\text{step(lr)}">,
+$$
+c \leftarrow c + \mathrm{step(lr)}
+$$
 
 which occurs if and only if the L2 distance
 
-<img src="https://render.githubusercontent.com/render/math?math=d:=L_2[f''(x), g(x)] = \sqrt{\int_{-\pi}^{\pi}{\lvert f''(x) - g(x) \rvert^2 \: dx}}">
+$$
+d:=L_2[f''(x), g(x)] = \sqrt{\int_{-\pi}^{\pi}{\lvert f''(x) - g(x) \rvert^2 \, dx}}
+$$
 
 would decrease with the new coefficients.
 
